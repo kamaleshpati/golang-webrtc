@@ -9,7 +9,7 @@ import Peer from "simple-peer"
 import "./App.css"
 
 
-const newSocket = new WebSocket("ws://localhost:8080/ws")
+const newSocket = new WebSocket("ws://localhost:8080/ws/video")
 function App() {
 	const [ me, setMe ] = useState("")
 	const [ stream, setStream ] = useState()
@@ -38,7 +38,6 @@ function App() {
 		}
 
 		newSocket.onmessage = (event)=>{
-			console.log("1");
 			let data = JSON.parse(event.data)
 			switch (data["type"]){
 				case "create-room":
@@ -87,7 +86,6 @@ function App() {
 		})
 
 		newSocket.onmessage = (event)=>{
-			console.log("2");
 			let data = JSON.parse(event.data)
 			switch (data["type"]){
 				case "answer-room":
